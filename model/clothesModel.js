@@ -35,7 +35,7 @@ const createNew = (item) => {
     console.log("item pushed");
     writeData(readList);
     console.log("posted to list");
-    return readList;
+    return newItem;
 }
 
 const getByID = (id) => {

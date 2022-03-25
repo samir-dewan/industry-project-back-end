@@ -15,7 +15,7 @@ const getAllClothes = (_req, res) => {
 const getClothesByID = (req, res) => {
     try {
         console.log(req.body);
-        const makeClothes = Model.getByID(req.body.id);
+        const makeClothes = Model.getByID(req.params.id);
         console.log(makeClothes);
         res.status(200).json(makeClothes);
     }
