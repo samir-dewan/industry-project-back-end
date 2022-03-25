@@ -2,8 +2,8 @@ const Model = require("../model/clothesModel");
 
 const getAllClothes = (_req, res) => {
     try {
-        const roomContent = Model.getAllData();
-        res.status(200).json(roomContent);
+        const clothContent = Model.getAllData();
+        res.status(200).json(clothContent);
     }
     catch {
         res.status(400).json({
@@ -12,6 +12,21 @@ const getAllClothes = (_req, res) => {
     }
 };
 
+const getClothesByID = (req, res) => {
+    try {
+        console.log(req.body);
+        const makeClothes = Model.getByID(req.body.id);
+        console.log(makeClothes);
+        res.status(200).json(makeClothes);
+    }
+    catch {
+        res
+          .status(201)
+          .json({
+            errormessage: `There was an error and ${req.body} was not found.`,
+          });
+    }
+}
 const postClothes = (req, res) => {
     try {
             console.log("in controller");
@@ -30,5 +45,6 @@ const postClothes = (req, res) => {
 
 module.exports = {
     getAllClothes,
-    postClothes
+    postClothes,
+    getClothesByID
 }

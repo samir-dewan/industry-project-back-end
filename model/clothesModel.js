@@ -38,7 +38,15 @@ const createNew = (item) => {
     return readList;
 }
 
+const getByID = (id) => {
+    console.log("in the model");
+    const currCloth = clothes.find((cloth) => cloth.id === id);
+    console.log(currCloth);
+    return currCloth;
+}
+
 module.exports = {
     getAllData,
-    createNew
+    createNew,
+    getByID
 }
