@@ -1,4 +1,3 @@
-const { createNew } = require("../helper/api_helper");
 const Model = require("../model/clothesModel");
 
 const getAllClothes = (_req, res) => {
@@ -15,7 +14,9 @@ const getAllClothes = (_req, res) => {
 
 const postClothes = (req, res) => {
     try {
-            const newClothes = createNew(req.body);
+            console.log("in controller");
+            console.log(req.body);
+            const newClothes = Model.createNew(req.body);
             res.status(201).json(newClothes);
     }
     catch {

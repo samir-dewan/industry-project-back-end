@@ -1,21 +1,20 @@
 const path = require("path");
-const pathToclothesJSONfile = path.join(__dirname, "../data/clothes.json");
+const pathToclothesJSONfile = path.join(__dirname, "../data/clothing.json");
 const uniqid = require('uniqid');
 const fs = require('fs');
-let Clothes = require(pathToclothesJSONfile);
-const helper = require("../helper/api_helper.js");
+let clothes = require(pathToclothesJSONfile);
 
 const readData = (path) => {
   return JSON.parse(fs.readFileSync(path));
 };
 
-const writeData = (filename, item) => {
-  fs.writeFileSync(filename, JSON.stringify(item), "utf8", (err) => {
+const writeData = (item) => {
+  fs.writeFileSync(pathToclothesJSONfile, JSON.stringify(item), "utf8", (err) => {
     if (err) {
       console.log("there has been an error in writing the data: ", err);
     }
   });
-  console.log(`changes ${item} saved to file ${filename}.`);
+  console.log(`changes ${item} saved to file.`);
 };
 
 const getAllData = () => {
@@ -27,12 +26,15 @@ const getAllData = () => {
 const createNew = (item) => {
     const readList = readData(pathToclothesJSONfile);
     const newItem = {
-        id = uniqid(),
-        postOnSite = Date(),
-        ...item
+        id: uniqid(),
+        postOnSite: Date(),
+        ...item,
     };
+    console.log("newitem made");
     readList.push(newItem);
-    writeData(path, readList);
+    console.log("item pushed");
+    writeData(readList);
+    console.log("posted to list");
     return readList;
 }
 
